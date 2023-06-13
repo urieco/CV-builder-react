@@ -10,6 +10,35 @@ function EditForm
 
   const idName = id.charAt(0).toUpperCase() + id.slice(1)
 
+  const onDoneEdit = (e) => {
+    e.stopPropagation()
+    if (
+      id !== 'company'
+      && id !== 'position'
+      && id !== 'task'
+      && id !== 'dateFrom'
+      && id !== 'dateTo'
+    ) Object.assign(temp, {
+      isWork: false,
+      keyName: id,
+      value: value
+    })
+    else {
+      const targetElement = document.querySelector(`#${id}`)
+      const parent = targetElement.parentNode.parentNode.parentNode
+      const dataId = parent.getAttribute('data-id')
+      const assignedObj = {
+        isWork: true,
+        keyName: id,
+        value: value,
+        dataId: dataId
+      }
+      Object.assign(temp, assignedObj)
+    }
+    saveToTemp()
+    setEditing(false)
+  }
+
   if (isEditing) {
     return (
       <form
@@ -29,27 +58,18 @@ function EditForm
         </label>
         <button
           className="doneEditBtn"
-          onClick={(e) => {
-            e.stopPropagation()
-            Object.assign(temp, { [id]: value })
-            saveToTemp()
-            setEditing(false)
-          }}
+          onClick={onDoneEdit}
         >
           &#10003;
         </button>
       </form>
     )
   } else {
-    if (id === 'company') {
-      return <h4 className='company'>{value}</h4>
-    } else {
-      return <InfoDisplay
-        id={id}
-        value={value}
-        saveToTemp={saveToTemp}
-      />
-    }
+    return <InfoDisplay
+      id={id}
+      value={value}
+      saveToTemp={saveToTemp}
+    />
   }
 }
 

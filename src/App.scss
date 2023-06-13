@@ -63,16 +63,16 @@ body {
 }
 
 .workInfo {
+  position: relative;
   margin-top: 1em;
-
-  .company {
-    display: flex;
-  }
 
   .deleteWorkplace {
     color: white;
     background-color: red;
     font-weight: 600;
+    position: absolute;
+    top: 0.3em;
+    left: 6em;
     padding: 0 0.75em;
     border: none;
     border-radius: 1em;

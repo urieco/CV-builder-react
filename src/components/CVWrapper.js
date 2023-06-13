@@ -19,7 +19,8 @@ export default class CVWrapper extends Component {
       
   }
 
-  addWorkplace () {
+  addWorkplace (e) {
+    e.stopPropagation()
     const newWorkplace = {
       company: '',
       position: '',
@@ -41,13 +42,24 @@ export default class CVWrapper extends Component {
   }
 
   saveToTemp () {
-    Object.assign(this.tempData, temp)
+    if (temp.isWork) {
+      const targetWorkplace = this.state.workAt
+        .filter((workplace) => workplace.id === temp.dataId)
+      const targetIndex = this.state.workAt.indexOf(targetWorkplace[0])
+      const assginedObj = {
+        [temp.keyName]: temp.value
+      }
+      Object.assign(this.tempData, {workAt: this.state.workAt})
+      Object.assign(this.tempData.workAt[targetIndex], assginedObj)
+
+    } else Object.assign(this.tempData, { [temp.keyName]: temp.value})
     this.setState({warning: true})
   }
 
   submitChange () {
     this.setState(this.tempData)
     this.setState({warning: false})
+    this.tempData = Object.create(null)
   }
 
   render() {
