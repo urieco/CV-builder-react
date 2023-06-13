@@ -31,7 +31,7 @@ function EditForm
           className="doneEditBtn"
           onClick={(e) => {
             e.stopPropagation()
-            Object.assign(temp, {[id]: value})
+            Object.assign(temp, { [id]: value })
             saveToTemp()
             setEditing(false)
           }}
@@ -41,12 +41,16 @@ function EditForm
       </form>
     )
   } else {
-    return <InfoDisplay
-      id={id}
-      value={value}
-      saveToTemp={saveToTemp}
-    />
+    if (id === 'company') {
+      return <h4 className='company'>{value}</h4>
+    } else {
+      return <InfoDisplay
+        id={id}
+        value={value}
+        saveToTemp={saveToTemp}
+      />
+    }
   }
 }
 
-export {EditForm, temp}
+export { EditForm, temp }

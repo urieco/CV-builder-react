@@ -10,9 +10,34 @@ export default class CVWrapper extends Component {
     super(props)
 
     this.state = template
+    this.tempData = Object.create(null) 
+
+    this.addWorkplace = this.addWorkplace.bind(this)
+    this.deleteWorkplace = this.deleteWorkplace.bind(this)
     this.submitChange = this.submitChange.bind(this)
     this.saveToTemp = this.saveToTemp.bind(this)
-    this.tempData = Object.create(null)   
+      
+  }
+
+  addWorkplace () {
+    const newWorkplace = {
+      company: '',
+      position: '',
+      task: '',
+      dateFrom: '',
+      dateTo: '',
+      id: uniqid()
+    }
+
+    this.setState({
+      workAt: this.state.workAt.concat(newWorkplace)
+    })
+  }
+
+  deleteWorkplace (id) {
+    this.setState({
+      workAt: this.state.workAt.filter((workplace) => workplace.id !== id)
+    })
   }
 
   saveToTemp () {
@@ -33,7 +58,6 @@ export default class CVWrapper extends Component {
       <form className='CVWrapper' onSubmit={(e) => {
         e.preventDefault()
         this.submitChange()
-        console.log(this.state)
       }}>
         <h1>{name ? name + "'s Resume" : ''}</h1>
         <h3 className='category'>Personal Information</h3>
@@ -58,20 +82,24 @@ export default class CVWrapper extends Component {
           > 
             +
           </button>  
-        </h3>      
+        </h3>
         {
           workAt.map(workplace => {
+            const {company, position, task, dateFrom, dateTo, id} 
+              = workplace
             return (
-              <div className='workplace'>
+              <>
                 <WorkInfoDisplay
-                  company={workplace.company}
-                  position={workplace.position}
-                  task={workplace.task}
-                  dateFrom={workplace.dateFrom}
-                  dateTo={workplace.dateTo}
+                  company={company}
+                  position={position}
+                  task={task}
+                  dateFrom={dateFrom}
+                  dateTo={dateTo}
+                  id={id}
+                  deleteWorkplace={this.deleteWorkplace}
                   saveToTemp={this.saveToTemp}
                 />
-              </div>
+              </>
             )
           })
         }
@@ -83,6 +111,11 @@ export default class CVWrapper extends Component {
         <span id='warning'> (Some changes haven't been submitted) </span>
         : <></>
         }
+
+        <button onClick={(e) => {
+          e.stopPropagation()
+          console.log(this.state)
+        }}>Console.log</button>
       </form>
     )
   }

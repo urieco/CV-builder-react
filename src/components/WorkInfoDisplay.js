@@ -1,7 +1,16 @@
+import { EditForm } from "./EditForm"
 import InfoDisplay from "./InfoDisplay"
 
 export default function WorkInfoDisplay 
-  ({ company, position, task, dateFrom, dateTo, saveToTemp}) 
+  ({ 
+    company, 
+    position, 
+    task, 
+    dateFrom, 
+    dateTo, 
+    id, 
+    deleteWorkplace, 
+    saveToTemp}) 
 {
   const array = [
     { key: 'position', position },
@@ -10,14 +19,24 @@ export default function WorkInfoDisplay
     { key: 'dateTo', dateTo }
   ]
 
-  const onDelete = () => {
-    document.querySelector('.workInfo').remove()
+  const onDelete = (e) => {
+    e.stopPropagation()
+    deleteWorkplace(id)
   }
 
   return (
-    <div className="workInfo">
+    <div 
+      className='workInfo' 
+      data-id={id}
+    >
       <h4 className='company'>
-        {company}
+        {company ? company : 
+        <EditForm
+          preValue=''
+          id='company'
+          inputType='text'
+          saveToTemp={saveToTemp}
+        />}
         <button 
           className='deleteWorkplace'
           onClick={onDelete}
@@ -25,14 +44,25 @@ export default function WorkInfoDisplay
           X 
         </button>
       </h4>
-      {array.map(item => {
-        return (
-          <InfoDisplay
-          id={item.key}
-          value={item[`${item.key}`]}
-          saveToTemp={saveToTemp}
-        />
-        )
+      {array.map((item) => {
+        if (item[item.key]) {
+          return (
+            <InfoDisplay
+            id={item.key}
+            value={item[item.key]}
+            saveToTemp={saveToTemp}
+          />
+          )
+        } else {
+          return (
+            <EditForm
+              preValue=''
+              id={item.key}
+              inputType={item.key.slice(0,4)==='date' ? 'date' : 'text'}
+              saveToTemp={saveToTemp}
+            />
+          )
+        }
       })}
     </div>
   )

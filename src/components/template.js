@@ -17,14 +17,14 @@ const template = {
       dateTo: '2023-06-01',
       id: uniqid()
     },
-    {
-      company: 'Google',
-      position: 'Cloud Computing Consultant',
-      task: 'Consulting clients on cloud services things',
-      dateFrom: '2021-09-01',
-      dateTo: '2022-09-01',
-      id: uniqid()
-    }
+    // {
+    //   company: 'Google',
+    //   position: 'Cloud Computing Consultant',
+    //   task: 'Consulting clients on cloud services things',
+    //   dateFrom: '2021-09-01',
+    //   dateTo: '2022-09-01',
+    //   id: uniqid()
+    // }
   ],
   warning: false
 }

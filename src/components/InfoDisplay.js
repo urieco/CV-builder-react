@@ -4,8 +4,6 @@ import {EditForm} from './EditForm'
 export default function InfoDisplay({ id, value, saveToTemp }) {
   const [isEditing, setEditing] = useState(false)
 
-  if (!value) setEditing(true)
-
   const idName = id.charAt(0).toUpperCase() + id.slice(1)
 
   const inputTypeCheck = (id) => {

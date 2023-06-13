@@ -27,8 +27,16 @@ body {
   grid-template-columns: 1fr 50px 1fr;
 
   .addWorkplace {
+    color: white;
+    background-color: green;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    border: none;
+    opacity: 0.7;
+  }
+
+  .addWorkplace:hover {
+    opacity: 0.5;
   }
 }
 
@@ -57,6 +65,10 @@ body {
 .workInfo {
   margin-top: 1em;
 
+  .company {
+    display: flex;
+  }
+
   .deleteWorkplace {
     color: white;
     background-color: red;
@@ -66,9 +78,14 @@ body {
     border-radius: 1em;
     margin-left: 1em;
   }
+  
   .deleteWorkplace:hover {
     opacity: 0.7;
   }
+}
+
+#company {
+  display: flex;
 }
 
 .editForm {
