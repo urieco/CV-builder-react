@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  // outline: 1px solid red;
+}
+
+body {
+  width: 90svh;
+  padding: 0.5em;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 1em;
+
+  button {
+    box-shadow: 0.1em 0.1em black;
+    margin-bottom: 0.25em;
+  }
+
+  button:active {
+    box-shadow: none;
+  }
+}
+
+.category {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+
+  .addWorkplace {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+}
+
+.info,
+.workInfo,
+.editForm {
+  margin-bottom: 0.25em;
+}
+
+.editBtn, .doneEditBtn {
+  font-size: 0.9rem;
+  padding: 0 0.25em;
+  margin-right: 0.2em;
+  user-select: none;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  margin-top: 0.15em;
+  span {
+    font-style: italic
+  }
+}
+
+.workInfo {
+  margin-top: 1em;
+
+  .deleteWorkplace {
+    color: white;
+    background-color: red;
+    font-weight: 600;
+    padding: 0 0.75em;
+    border: none;
+    border-radius: 1em;
+    margin-left: 1em;
+  }
+  .deleteWorkplace:hover {
+    opacity: 0.7;
+  }
+}
+
+.editForm {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+
+  label {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin: 0.14em 0;
+  }
+}
+
+.SubmitBtn {
+  margin-top: 1em;
+}
+
+#warning {
+  color: red;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  visibility: collapse;
+  display: none;
+}
