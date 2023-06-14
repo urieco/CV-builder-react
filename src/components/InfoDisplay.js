@@ -30,7 +30,7 @@ export default function InfoDisplay({ id, value, saveToTemp }) {
       />
     )
   } else {
-    if (id === 'company') {
+    if (id === 'company' || id ==='description') {
       return (
         <div className='info'>
           <h4 className={id}>{value}</h4>

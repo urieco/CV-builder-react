@@ -1,4 +1,10 @@
-export default function AboutMe() {
+import { useState } from 'react'
+import testAvatar from '../images/testAvatar.jpg'
+import InfoDisplay from './InfoDisplay'
+import { EditForm } from './EditForm'
+
+export default function AboutMe({ description, saveToTemp }) {
+  const [isEditing, setEditing] = useState(false)
 
   const displayImage = (e) => {
     const reader = new FileReader()
@@ -11,19 +17,55 @@ export default function AboutMe() {
 
   return (
     <div className="aboutMe">
+      <img
+        id='preview'
+        alt='Avatar'
+        src={testAvatar}
+      ></img>
       <form>
-        <label htmlFor="insertProfilePicture">Image: </label>
+        <label
+          htmlFor="insertPicture"
+          className="insertPicture"
+        >
+          +
+        </label>
         <input
           type='file'
           accept='image/*'
           onChange={displayImage}
-          name='insertProfilePicture'
-          id='insertProfilePicture'
+          value=''
+          name='insertPicture'
+          id='insertPicture'
         />
       </form>
-      
+      <div className='descriptionContainer'>
+        {isEditing ?
+          <EditForm
+              preValue=''
+              id='description'
+              inputType='text'
+              saveToTemp={saveToTemp}
+          />
+          :
+          <>
+          <InfoDisplay
+            id='description'
+            value={description}
+            saveToTemp={saveToTemp}
+          />
+          <button 
+            className='editBtn'
+            onClick={(e) => {
+              e.stopPropagation()
+              setEditing(true)
+            }}
+          >
+            &#9998;
+          </button>
+        </>
+        }
 
-      <img id='preview' style={{maxWidth: '100%'}} alt='Avatar'></img>
+      </div>
     </div>
   )
 }
