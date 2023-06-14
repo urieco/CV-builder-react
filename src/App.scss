@@ -1,19 +1,37 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  // outline: 1px solid red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
-  width: 90svh;
-  padding: 0.5em;
-  border: 1px solid black;
+  background: rgb(241, 245, 249);
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 1) 0%,
+    rgba(251, 220, 63, 0.1) 100%,
+    rgba(215, 215, 215, 0.5) 100%
+  );
+  background-size: 200% 200%;
+  object-fit: cover;
+}
+
+.App {
+  background-color: #f1f5f9;
+  width: 90svw;
+  border-width: 0.05em;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4.25%;
   margin: auto;
   margin-top: 1em;
 
   button {
+    width: 5svw;
     box-shadow: 0.1em 0.1em black;
     margin-bottom: 0.25em;
+    cursor: pointer;
   }
 
   button:active {
@@ -21,16 +39,30 @@ body {
   }
 }
 
+.CVWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .CVWrapperForm {
+    padding-left: 0.75em;
+  }
+
+  .title {
+    text-align: center;
+  }
+}
+
 .category {
   margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 50px 1fr;
+  display: flex;
+  justify-content: space-between;
 
   .addWorkplace {
     color: white;
     background-color: green;
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 1.5rem;
+    width: 5.5svw;
     border: none;
     opacity: 0.7;
   }
@@ -46,7 +78,8 @@ body {
   margin-bottom: 0.25em;
 }
 
-.editBtn, .doneEditBtn {
+.editBtn,
+.doneEditBtn {
   font-size: 0.9rem;
   padding: 0 0.25em;
   margin-right: 0.2em;
@@ -54,11 +87,12 @@ body {
 }
 
 .info {
-  display: grid;
-  grid-template-columns: 1fr 50px 1fr;
+  display: flex;
+  justify-content: space-between;
   margin-top: 0.15em;
+
   span {
-    font-style: italic
+    font-style: italic;
   }
 }
 
@@ -78,35 +112,105 @@ body {
     border-radius: 1em;
     margin-left: 1em;
   }
-  
+
   .deleteWorkplace:hover {
     opacity: 0.7;
   }
 }
 
-#company {
-  display: flex;
-}
-
 .editForm {
-  display: grid;
-  grid-template-columns: 1fr 50px 1fr;
+  display: flex;
+  justify-content: space-between;
 
   label {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 5fr;
+    width: 100%;
     margin: 0.14em 0;
   }
 }
 
-.SubmitBtn {
-  margin-top: 1em;
+button.submitBtn {
+  background-color: transparent;
+  font-size: 1.25rem;
+  width: 10svw;
+  border-color: transparent;
+  border-radius: 15%;
+  margin: 1em 0;
+}
+
+button.submitBtn:hover {
+  transform: scale(1.1);
+  transform: translateY(-5%);
+  background-color: #d7d7d7;
 }
 
 #warning {
   color: red;
   font-style: italic;
   font-size: 0.9rem;
+  margin-left: 1em;
+}
+
+.aboutMe {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 1) 0%,
+    rgb(206, 81, 218, 0.2) 100%,
+    rgb(253, 253, 253, 0.5) 100%
+  );
+  text-align: center;
+  padding: 1em;
+  border-radius: 5%;
+
+  label.insertPicture {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.25em 0.5em;
+    border-radius: 100%;
+    box-shadow: 0.1em 0.1em black;
+    cursor: pointer;
+  }
+
+  label.insertPicture:hover {
+    opacity: 0.8;
+  }
+
+  label.insertPicture:active {
+    box-shadow: none;
+  }
+
+  input#insertPicture {
+    display: none;
+  }
+
+  #preview {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    border: 0.25em solid #fff1f2;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .descriptionContainer {
+    text-align: justify;
+    margin: 1em 2.5em;
+
+    .info {
+      padding: 0.5em 2em;
+    }
+
+    button.editBtn {
+      background-color: transparent;
+      border: none;
+      margin-top: 1em;
+      margin-left: 45%;
+    }
+  }
 }
 
 .hidden {
