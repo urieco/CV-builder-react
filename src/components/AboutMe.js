@@ -21,6 +21,7 @@ export default function AboutMe() {
           id='insertProfilePicture'
         />
       </form>
+      
 
       <img id='preview' style={{maxWidth: '100%'}} alt='Avatar'></img>
     </div>
